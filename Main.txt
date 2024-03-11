@@ -2,9 +2,15 @@ public class Main {
     public static void main(String[] args) {
 
         CasosSimples casosSimples = new CasosSimples();
+        CasosDificeis casosDificeis = new CasosDificeis();
 
         casosSimples.adicionarEndereco("Miritiba 339");
         casosSimples.adicionarEndereco("Babaçu 500");
         casosSimples.adicionarEndereco("Cambuí 804B");
+
+        System.out.println();
+
+        casosDificeis.adicionarEndereco("Rua Rio Branco 23");
+        casosDificeis.adicionarEndereco("Avenida Quirino dos Santos 23 b");
     }
 }

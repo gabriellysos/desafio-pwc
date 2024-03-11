@@ -1,0 +1,54 @@
+public class CasosDificeis {
+    public static Endereco separarEndereco(String inputEndereco) {
+        if (!validarEndereco(inputEndereco)) {
+            throw new IllegalArgumentException("Endereço vazio");
+        }
+
+        String nomeRua = extrairRua(inputEndereco);
+        String numeroRua = extrairNumero(inputEndereco);
+
+        return new Endereco(nomeRua, numeroRua);
+    }
+
+    private static String extrairRua(String inputEndereco) {
+        int posPrimeiroDigito = encontrarPrimeiroDigito(inputEndereco);
+        validarNumero(posPrimeiroDigito);
+
+        return inputEndereco.substring(0, posPrimeiroDigito).trim();
+    }
+
+    private static String extrairNumero(String inputEndereco) {
+        int posPrimeiroDigito = encontrarPrimeiroDigito(inputEndereco);
+        validarNumero(posPrimeiroDigito);
+
+        return inputEndereco.substring(posPrimeiroDigito).trim();
+    }
+
+    private static int encontrarPrimeiroDigito(String inputEndereco) {
+        for (int i = 0; i < inputEndereco.length(); i++) {
+            if (Character.isDigit(inputEndereco.charAt(i))) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private static boolean validarNumero(int posPrimeiroDigito) {
+        if (posPrimeiroDigito <= 0) {
+            throw new IllegalArgumentException("Número não encontrado");
+        }
+
+        return true;
+    }
+
+    private static boolean validarEndereco(String inputEndereco){
+        return inputEndereco != null && !inputEndereco.isEmpty();
+    }
+
+    public void adicionarEndereco(String inputEndereco){
+        Endereco endereco = separarEndereco(inputEndereco);
+        System.out.printf("{\"%s\", \"%s\"}", endereco.getNomeRua(), endereco.getNumeroRua());
+        System.out.println();
+    }
+}
