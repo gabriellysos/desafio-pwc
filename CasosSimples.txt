@@ -1,0 +1,38 @@
+public class CasosSimples {
+    public static Endereco separarEndereco(String inputEndereco) {
+        if (!validarEndereco(inputEndereco)) {
+            throw new IllegalArgumentException("Endereço vazio");
+        }
+
+        String nomeRua = extrairRua(inputEndereco);
+        String numeroRua = extrairNumero(inputEndereco);
+
+        return new Endereco(nomeRua, numeroRua);
+    }
+
+    private static String extrairRua(String inputEndereco) {
+        int posicaoEspaco = inputEndereco.indexOf(' ');
+        if (posicaoEspaco <= 0) {
+            throw new IllegalArgumentException("Endereço sem número");
+        }
+
+        return inputEndereco.substring(0, posicaoEspaco);
+    }
+
+    private static String extrairNumero(String inputEndereco) {
+        String nomeRua = extrairRua(inputEndereco);
+        String numeroRua = inputEndereco.substring(nomeRua.length()).trim();
+
+        return numeroRua;
+    }
+
+    private static boolean validarEndereco(String inputEndereco){
+        return inputEndereco != null && !inputEndereco.isEmpty();
+    }
+
+    public void adicionarEndereco(String inputEndereco){
+        Endereco endereco = separarEndereco(inputEndereco);
+        System.out.printf("{\"%s\", \"%s\"}", endereco.getNomeRua(), endereco.getNumeroRua());
+        System.out.println();
+    }
+}

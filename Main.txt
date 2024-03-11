@@ -1,0 +1,10 @@
+public class Main {
+    public static void main(String[] args) {
+
+        CasosSimples casosSimples = new CasosSimples();
+
+        casosSimples.adicionarEndereco("Miritiba 339");
+        casosSimples.adicionarEndereco("Babaçu 500");
+        casosSimples.adicionarEndereco("Cambuí 804B");
+    }
+}
